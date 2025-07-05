@@ -4,32 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Tailwind Starter Template - Nordic Shop: Tailwind Toolbox</title>
-    <meta name="description" content="Free open source Tailwind CSS Store template" />
-    <meta name="keywords" content="tailwind,tailwindcss,tailwind css,css,starter template,free template,store template, shop layout, minimal, monochrome, minimalistic, theme, nordic" />
+    <title>Sayur Farhan - Sayur Segar Langsung dari Petani</title>
+    <meta name="description" content="Sayur Farhan menyediakan sayur mayur segar, organik, dan berkualitas langsung dari petani lokal dengan harga terjangkau. Pesan sekarang untuk pengiriman cepat!" />
+    <meta name="keywords" content="sayur segar, sayur organik, sayur lokal, beli sayur online, Sayur Farhan, belanja sayur, pengiriman sayur" />
 
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
-
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
 
     <style>
       .work-sans {
         font-family: "Work Sans", sans-serif;
       }
-
-      #menu-toggle:checked + #menu {
-        display: block;
+      /* Gaya untuk modal */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+      }
+      .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      .modal-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 0.5rem;
+        max-width: 900px; /* Lebar maksimum modal */
+        width: 90%;
+        max-height: 90%; /* Tinggi maksimum modal */
+        overflow-y: auto; /* Scrollable jika kontennya terlalu panjang */
+        position: relative;
+        transform: translateY(-20px);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .modal-overlay.active .modal-container {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .modal-close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: #6b7280;
+        transition: color 0.2s ease;
+      }
+      .modal-close:hover {
+        color: #1f2937;
       }
 
-      .hover\:grow {
-        transition: all 0.3s;
-        transform: scale(1);
-      }
-
-      .hover\:grow:hover {
-        transform: scale(1.02);
-      }
-
+      /* Gaya Carousel dari kode asli Anda */
       .carousel-open:checked + .carousel-item {
         position: static;
         opacity: 100;
@@ -66,10 +104,8 @@
       }
     </style>
   </head>
-
-  <body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
-    <!--Nav-->
-    <nav id="header" class="w-full z-30 top-0 py-1">
+  <body class="bg-gray-100 text-gray-600 work-sans leading-normal text-base tracking-normal">
+    <nav id="header" class="w-full z-30 top-0 py-1 bg-white shadow-md">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
         <label for="menu-toggle" class="cursor-pointer md:hidden block">
           <svg class="fill-current text-gray-900" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
@@ -82,7 +118,7 @@
         <div class="hidden md:flex md:items-center md:w-auto w-full order-3 md:order-1" id="menu">
           <nav>
             <ul class="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-              <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#">Shop</a></li>
+              <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#store">Shop</a></li>
               <li><a class="inline-block no-underline hover:text-black hover:underline py-2 px-4" href="#about">About</a></li>
             </ul>
           </nav>
@@ -100,7 +136,7 @@
         </div>
 
         <div class="order-2 md:order-3 flex items-center" id="nav-content">
-          <a class="inline-block no-underline hover:text-black" href="#">
+          <a class="pl-3 inline-block no-underline hover:text-black" href="auth.html">
             <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <circle fill="none" cx="12" cy="7" r="3" />
               <path
@@ -109,7 +145,7 @@
             </svg>
           </a>
 
-          <a class="pl-3 inline-block no-underline hover:text-black" href="#">
+          <a class="pl-3 inline-block no-underline hover:text-black" href="order.html">
             <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path
                 d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z"
@@ -124,14 +160,14 @@
 
     <div class="carousel relative container mx-auto" style="max-width: 1600px">
       <div class="carousel-inner relative overflow-hidden w-full">
-        <!--Slide 1-->
         <input class="carousel-open" type="radio" id="carousel-1" name="carousel" aria-hidden="true" hidden="" checked="checked" />
         <div class="carousel-item absolute opacity-0" style="height: 50vh">
           <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('images/sayur_segar.png')">
             <div class="container mx-auto">
               <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                <p class="text-white text-2xl my-4">Penuhi Serat Harian Anda dengan Makan Sayur</p>
-                <p class="text-white text-2xl my-4">dari SayurFarhan</p>
+                <p class="text-white text-2xl md:text-3xl lg:text-4xl my-4 text-center md:text-left">Penuhi Serat Harian Anda dengan Makan Sayur</p>
+
+                <a href="#store" class="mt-4 px-6 py-3 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition duration-300 ease-in-out"> Belanja Sekarang! </a>
               </div>
             </div>
           </div>
@@ -147,14 +183,14 @@
           >›</label
         >
 
-        <!--Slide 2-->
         <input class="carousel-open" type="radio" id="carousel-2" name="carousel" aria-hidden="true" hidden="" />
-        <div class="carousel-item absolute opacity-0 bg-cover bg-right" style="height: 50vh">
-          <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right" style="background-image: url('images/sayur_segar2.png')">
+        <div class="carousel-item absolute opacity-0 bg-cover bg-right" style="background-image: url('images/sayur_segar2.png'); height: 50vh">
+          <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-right">
             <div class="container mx-auto">
               <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                <p class="text-white text-2xl my-4">Penuhi Serat Harian Anda dengan Makan Sayur</p>
-                <p class="text-white text-2xl my-4">dari SayurFarhan</p>
+                <p class="text-white text-2xl md:text-3xl lg:text-4xl my-4 text-center md:text-left">Penuhi Serat Harian Anda dengan Makan Sayur</p>
+
+                <a href="#store" class="mt-4 px-6 py-3 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition duration-300 ease-in-out"> Belanja Sekarang! </a>
               </div>
             </div>
           </div>
@@ -170,14 +206,14 @@
           >›</label
         >
 
-        <!--Slide 3-->
         <input class="carousel-open" type="radio" id="carousel-3" name="carousel" aria-hidden="true" hidden="" />
         <div class="carousel-item absolute opacity-0" style="height: 50vh">
           <div class="block h-full w-full mx-auto flex pt-6 md:pt-0 md:items-center bg-cover bg-bottom" style="background-image: url('images/sayur_segar3.png')">
             <div class="container mx-auto">
               <div class="flex flex-col w-full lg:w-1/2 md:ml-16 items-center md:items-start px-6 tracking-wide">
-                <p class="text-white text-2xl my-4">Penuhi Serat Harian Anda dengan Makan Sayur</p>
-                <p class="text-white text-2xl my-4">dari SayurFarhan</p>
+                <p class="text-white text-2xl md:text-3xl lg:text-4xl my-4 text-center md:text-left">Penuhi Serat Harian Anda dengan Makan Sayur</p>
+
+                <a href="#store" class="mt-4 px-6 py-3 bg-green-600 text-white font-bold rounded-full hover:bg-green-700 transition duration-300 ease-in-out"> Belanja Sekarang! </a>
               </div>
             </div>
           </div>
@@ -193,7 +229,6 @@
           >›</label
         >
 
-        <!-- Add additional indicators for each slide-->
         <ol class="carousel-indicators">
           <li class="inline-block mr-3">
             <label for="carousel-1" class="carousel-bullet cursor-pointer block text-4xl text-gray-400 hover:text-gray-900">•</label>
@@ -208,39 +243,17 @@
       </div>
     </div>
 
-    <!--	 
-
-Alternatively if you want to just have a single hero
-
-<section class="w-full mx-auto bg-nordic-gray-light flex pt-12 md:pt-0 md:items-center bg-cover bg-right" style="max-width:1600px; height: 32rem; background-image: url('https://images.unsplash.com/photo-1422190441165-ec2956dc9ecc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1600&q=80');">
-
-	<div class="container mx-auto">
-
-		<div class="flex flex-col w-full lg:w-1/2 justify-center items-start  px-6 tracking-wide">
-			<h1 class="text-white text-2xl my-4">Stripy Zig Zag Jigsaw Pillow and Duvet Set</h1>
-			<a class="text-xl inline-block no-underline border-b border-gray-600 leading-relaxed hover:text-black hover:border-black" href="#">products</a>
-
-		</div>
-
-	  </div>
-
-</section>
-
--->
-
     <section class="bg-white py-8">
       <div class="container mx-auto flex items-center flex-wrap pt-4 pb-12">
         <nav id="store" class="w-full z-30 top-0 px-6 py-1">
           <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-3">
-            <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl" href="#"> Store </a>
-
+            <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl" href="#"> Produk Sayur Kami </a>
             <div class="flex items-center" id="store-nav-content">
               <a class="pl-3 inline-block no-underline hover:text-black" href="#">
                 <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path d="M7 11H17V13H7zM4 7H20V9H4zM10 15H14V17H10z" />
                 </svg>
               </a>
-
               <a class="pl-3 inline-block no-underline hover:text-black" href="#">
                 <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                   <path
@@ -252,135 +265,14 @@ Alternatively if you want to just have a single hero
           </div>
         </nav>
 
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/brokoli.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Brokoli</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp28.000/kg</p>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/bayam.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Bayam</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp6000/ikat</p>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/kangkung.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Kangkung</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp5000/ikat</p>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/seledri.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">seledri</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp3000/ikat</p>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/wortel.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Worter</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp12.000/kg</p>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/terong.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Terong</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp8000/kg</p>
-          </a>
-        </div>
-
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/timun.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Timun</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp10.000/kg</p>
-          </a>
-        </div>
-        <div class="w-full md:w-1/3 xl:w-1/4 p-6 flex flex-col">
-          <a href="#">
-            <img class="hover:grow hover:shadow-lg" src="images/bawang.jpeg" />
-            <div class="pt-3 flex items-center justify-between">
-              <p class="">Bawang Merah</p>
-              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-black" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path
-                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
-                />
-              </svg>
-            </div>
-            <p class="pt-1 text-gray-900">Rp5000/ons</p>
-          </a>
-        </div>
+        <div id="product-list" class="w-full flex flex-wrap justify-center"></div>
       </div>
     </section>
 
-    <section class="bg-white py-8" id="about">
-      <div class="container py-8 px-6 mx-auto">
-        <a class="uppercase tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl mb-8" href="#"> Tentang Kami </a>
-
-        <br />
-        <br />
-
-        <p class="mb-8">
+    <section class="bg-gray-100 py-12" id="about">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold text-gray-800 mb-6">Tentang Sayur Farhan</h2>
+        <p class="text-gray-700 text-lg leading-relaxed mb-8">
           Selamat datang di SayurFarhan, solusi belanja sayur mayur segar, praktis, dan terpercaya! Kami menyediakan berbagai jenis sayuran segar langsung dari petani lokal setiap harinya. Dengan kualitas terbaik dan harga terjangkau, kami
           berkomitmen membantu Anda memenuhi kebutuhan dapur dengan mudah dan cepat. Mulai dari bayam, kangkung, wortel, hingga sayur organik pilihan – semuanya kami siapkan dengan proses seleksi ketat dan pengemasan higienis. Pesan hari
           ini, kirim hari ini juga! Terima kasih telah mempercayakan kebutuhan sayur Anda kepada kami!
@@ -388,53 +280,308 @@ Alternatively if you want to just have a single hero
       </div>
     </section>
 
-    <footer class="container mx-auto bg-white py-8 border-t border-gray-400">
-      <div class="container flex px-3 py-8">
-        <div class="w-full mx-auto flex flex-wrap">
-          <div class="flex w-full lg:w-1/2">
-            <div class="px-3 md:px-0">
-              <h3 class="font-bold text-gray-900">About</h3>
-              <p class="py-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel mi ut felis tempus commodo nec id erat. Suspendisse consectetur dapibus velit ut lacinia.</p>
-            </div>
-          </div>
-          <div class="flex w-full lg:w-1/2 lg:justify-end lg:text-right mt-6 md:mt-0">
-            <div class="px-3 md:px-0">
-              <h3 class="text-left font-bold text-gray-900">Social</h3>
+    <footer class="bg-gray-800 text-gray-200 py-10 mt-12">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="mb-6 md:mb-0">
+          <h3 class="font-bold text-white text-lg mb-4">SAYUR FARHAN</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Menyediakan sayur mayur segar langsung dari petani lokal. Kualitas terjamin, harga terjangkau, dan pengiriman cepat untuk kebutuhan dapur sehat Anda.</p>
+        </div>
 
-              <div class="w-full flex items-center py-4 mt-0">
-                <a href="#" class="mx-2">
-                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path
-                      d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"
-                    ></path>
-                  </svg>
-                </a>
-                <a href="#" class="mx-2">
-                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path
-                      d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                    ></path>
-                  </svg>
-                </a>
-                <a href="#" class="mx-2">
-                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path
-                      d="M12 0C8.74 0 8.333.015 7.053.072 5.775.132 4.905.333 4.14.63c-.789.306-1.459.717-2.126 1.384S.935 3.35.63 4.14C.333 4.905.131 5.775.072 7.053.012 8.333 0 8.74 0 12s.015 3.667.072 4.947c.06 1.277.261 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.666 1.336 1.079 2.126 1.384.766.296 1.636.499 2.913.558C8.333 23.988 8.74 24 12 24s3.667-.015 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.718 2.126-1.384.666-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.015-3.667-.072-4.947c-.06-1.277-.262-2.149-.558-2.913-.306-.789-.718-1.459-1.384-2.126C21.319 1.347 20.651.935 19.86.63c-.765-.297-1.636-.499-2.913-.558C15.667.012 15.26 0 12 0zm0 2.16c3.203 0 3.585.016 4.85.071 1.17.055 1.805.249 2.227.415.562.217.96.477 1.382.896.419.42.679.819.896 1.381.164.422.36 1.057.413 2.227.057 1.266.07 1.646.07 4.85s-.015 3.585-.074 4.85c-.061 1.17-.256 1.805-.421 2.227-.224.562-.479.96-.899 1.382-.419.419-.824.679-1.38.896-.42.164-1.065.36-2.235.413-1.274.057-1.649.07-4.859.07-3.211 0-3.586-.015-4.859-.074-1.171-.061-1.816-.256-2.236-.421-.569-.224-.96-.479-1.379-.899-.421-.419-.69-.824-.9-1.38-.165-.42-.359-1.065-.42-2.235-.045-1.26-.061-1.649-.061-4.844 0-3.196.016-3.586.061-4.861.061-1.17.255-1.814.42-2.234.21-.57.479-.96.9-1.381.419-.419.81-.689 1.379-.898.42-.166 1.051-.361 2.221-.421 1.275-.045 1.65-.06 4.859-.06l.045.03zm0 3.678c-3.405 0-6.162 2.76-6.162 6.162 0 3.405 2.76 6.162 6.162 6.162 3.405 0 6.162-2.76 6.162-6.162 0-3.405-2.76-6.162-6.162-6.162zM12 16c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4zm7.846-10.405c0 .795-.646 1.44-1.44 1.44-.795 0-1.44-.646-1.44-1.44 0-.794.646-1.439 1.44-1.439.793-.001 1.44.645 1.44 1.439z"
-                    ></path>
-                  </svg>
-                </a>
-                <a href="#" class="mx-2">
-                  <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24">
-                    <path
-                      d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"
-                    ></path>
-                  </svg>
-                </a>
-              </div>
+        <div class="mb-6 md:mb-0">
+          <h3 class="font-bold text-white text-lg mb-4">Navigasi</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300">Beranda</a></li>
+            <li><a href="#store" class="text-gray-400 hover:text-white transition-colors duration-300">Produk</a></li>
+            <li><a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300">Tentang Kami</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-white text-lg mb-4">Ikuti Kami</h3>
+          <div class="flex space-x-4 mb-6">
+            <a href="https://facebook.com/sayurfarhan" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C18.343 21.128 22 16.991 22 12z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a href="https://instagram.com/sayurfarhan" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M12 4c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5S14.48 4 12 4zm0 2.25c1.24 0 2.25 1.01 2.25 2.25S13.24 10.75 12 10.75 9.75 9.74 9.75 8.5 10.76 6.25 12 6.25zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm6.657 3.343a.75.75 0 11-1.06 1.06.75.75 0 011.06-1.06zm-1.06 1.06a.75.75 0 000 1.06.75.75 0 001.06 0 .75.75 0 000-1.06zM4.5 12c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.6-3.807-1.6-5.892C.144 6.902 6.059 1 13.5 1c3.2 0 6.22 1.24 8.441 3.461 2.221 2.22 3.46 5.24 3.46 8.44C25.4 19.062 19.485 25 12 25c-2.985 0-5.836-.889-8.318-2.435L.057 24zm6.897-3.284l.288.163c2.188 1.266 4.77 1.942 7.358 1.942 5.626 0 10.22-4.594 10.22-10.22 0-5.626-4.594-10.22-10.22-10.22S3.28 6.374 3.28 12c0 2.203.702 4.318 2.062 6.096l.128.188-.496 1.815 1.86-1.78zm5.549-5.184c-.214-.108-.501-.214-.796-.107-.295.107-.638.535-.78.638-.14.107-.282.107-.525-.098-.242-.214-.805-.733-.976-.948-.17-.214-.022-.295.192-.501.192-.178.214-.295.32-.47l.428-.696c.107-.178.053-.295-.022-.445-.07-.14-.707-1.737-.96-2.368-.254-.63-.509-.535-.715-.535-.205 0-.447-.022-.68-.022-.232 0-.61.107-.92.375-.309.268-1.176 1.16-1.176 2.825 0 1.666 1.206 3.327 1.73 4.023.524.696 2.502 4.004 5.928 5.306 3.425 1.299 3.425.891 4.053.891.627 0 1.96-.814 2.204-1.619.243-.805.243-1.493.17-1.619-.07-.107-.268-.163-.553-.321z"
+                />
+              </svg>
+            </a>
+          </div>
+          <p class="text-gray-400 text-sm">Email: <a href="mailto:info@sayurfarhan.com" class="hover:text-white transition-colors duration-300">info@sayurfarhan.com</a></p>
+          <p class="text-gray-400 text-sm">Telepon: <a href="tel:+6281234567890" class="hover:text-white transition-colors duration-300">+62 812-3456-7890</a></p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">&copy; 2025 Sayur Farhan. Hak Cipta Dilindungi Undang-Undang.</div>
+    </footer>
+
+    <div id="productModal" class="modal-overlay hidden">
+      <div class="modal-container">
+        <button id="closeModalBtn" class="modal-close">&times;</button>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+          <div class="flex justify-center md:justify-end">
+            <img id="modal-product-image" src="" alt="Gambar Produk" class="w-full max-w-md h-auto object-cover rounded-lg shadow-lg" />
+          </div>
+
+          <div>
+            <h2 id="modal-product-name" class="text-2xl sm:text-3xl font-bold text-gray-800 mb-4"></h2>
+            <p id="modal-product-description" class="text-gray-700 text-base sm:text-lg leading-relaxed mb-6"></p>
+
+            <div class="flex items-baseline mb-6">
+              <p class="text-gray-800 text-2xl sm:text-3xl font-extrabold mr-2">Rp <span id="modal-product-price"></span></p>
+              <p class="text-gray-500 text-base sm:text-lg">/<span id="modal-product-unit"></span></p>
+            </div>
+
+            <h3 class="text-lg sm:text-xl font-bold text-gray-800 mb-3">Manfaat & Keunggulan:</h3>
+            <ul id="modal-product-benefits" class="list-disc list-inside text-gray-700 mb-8 space-y-2 text-sm sm:text-base"></ul>
+
+            <div class="flex flex-col sm:flex-row items-center sm:space-x-4 space-y-4 sm:space-y-0">
+              <label for="modal-quantity" class="text-gray-700 font-bold">Jumlah:</label>
+              <input
+                type="number"
+                id="modal-quantity"
+                name="quantity"
+                min="1"
+                value="1"
+                class="w-full sm:w-24 shadow appearance-none border rounded py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500"
+              />
+              <button
+                id="modal-addToCartBtn"
+                class="w-full sm:w-auto bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-full focus:outline-none focus:shadow-outline flex items-center justify-center transition duration-300 ease-in-out"
+              >
+                <svg class="fill-current text-white w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" fill="currentColor" />
+                </svg>
+                Tambah ke Keranjang
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+
+    <script>
+      // Data produk
+      const products = {
+        brokoli: {
+          id: "brokoli",
+          name: "Brokoli Segar Pilihan",
+          image: "images/brokoli.jpeg",
+          description: "Brokoli segar langsung dari petani lokal, kaya akan vitamin C dan K, serta serat. Cocok untuk hidangan tumis, sup, atau kukus. Dipanen saat optimal untuk menjaga kesegaran dan nutrisi.",
+          price: 28000,
+          unit: "kg",
+          benefits: ["Kaya Antioksidan", "Sumber Serat Tinggi", "Mendukung Kesehatan Jantung", "Meningkatkan Kekebalan Tubuh"],
+        },
+        bayam: {
+          id: "bayam",
+          name: "Bayam Organik Segar",
+          image: "images/bayam.jpeg",
+          description: "Bayam organik pilihan, bebas pestisida, kaya akan zat besi, vitamin A, dan folat. Ideal untuk sayur bening, tumis, atau smoothie sehat. Daunnya hijau pekat, menandakan kesegaran dan kualitas.",
+          price: 6000,
+          unit: "ikat",
+          benefits: ["Tinggi Zat Besi", "Baik untuk Penglihatan", "Mencegah Anemia", "Menjaga Kesehatan Tulang"],
+        },
+        kangkung: {
+          id: "kangkung",
+          name: "Kangkung Segar",
+          image: "images/kangkung.jpeg",
+          description: "Kangkung segar pilihan, sangat cocok untuk tumisan atau sayur berkuah. Kaya akan vitamin dan mineral, membantu melancarkan pencernaan.",
+          price: 5000,
+          unit: "ikat",
+          benefits: ["Meningkatkan Kesehatan Pencernaan", "Sumber Vitamin A & C", "Membantu Mencegah Diabetes", "Meningkatkan Imunitas Tubuh"],
+        },
+        seledri: {
+          id: "seledri",
+          name: "Seledri Segar",
+          image: "images/seledri.jpeg",
+          description: "Seledri segar dengan aroma khas, sering digunakan sebagai pelengkap masakan atau bahan jus detoks. Baik untuk kesehatan ginjal dan tekanan darah.",
+          price: 3000,
+          unit: "ikat",
+          benefits: ["Menurunkan Tekanan Darah", "Anti-inflamasi Alami", "Detoksifikasi Tubuh", "Sumber Vitamin K"],
+        },
+        wortel: {
+          id: "wortel",
+          name: "Wortel Manis Super",
+          image: "images/wortel.jpeg",
+          description:
+            "Wortel manis dengan warna oranye cerah, mengandung beta-karoten tinggi yang baik untuk mata. Teksturnya renyah dan rasanya manis alami, cocok untuk jus, salad, atau masakan. Dipanen pada usia yang tepat untuk rasa terbaik.",
+          price: 12000,
+          unit: "kg",
+          benefits: ["Baik untuk Mata", "Sumber Vitamin A", "Meningkatkan Kesehatan Kulit", "Mendukung Fungsi Kekebalan Tubuh"],
+        },
+        terong: {
+          id: "terong",
+          name: "Terong Ungu",
+          image: "images/terong.jpeg",
+          description: "Terong ungu segar, kaya serat dan antioksidan. Cocok diolah menjadi balado, tumis, atau digoreng. Memiliki tekstur lembut setelah dimasak.",
+          price: 8000,
+          unit: "kg",
+          benefits: ["Kaya Serat Pangan", "Mengandung Antioksidan Nasunin", "Baik untuk Kontrol Gula Darah", "Mendukung Kesehatan Otak"],
+        },
+        timun: {
+          id: "timun",
+          name: "Timun Segar",
+          image: "images/timun.jpeg",
+          description: "Timun segar dengan kandungan air tinggi, sangat baik untuk hidrasi dan detoksifikasi. Ideal untuk salad, acar, atau jus.",
+          price: 10000,
+          unit: "kg",
+          benefits: ["Hidrasi Optimal", "Detoksifikasi Alami", "Sumber Vitamin K", "Menyegarkan Kulit"],
+        },
+        bawang_merah: {
+          id: "bawang_merah",
+          name: "Bawang Merah",
+          image: "images/bawang.jpeg",
+          description: "Bawang merah berkualitas tinggi, memberikan aroma dan rasa yang kuat pada masakan. Merupakan bumbu dapur esensial.",
+          price: 5000,
+          unit: "ons",
+          benefits: ["Anti-inflamasi", "Meningkatkan Kekebalan", "Sumber Antioksidan", "Menambah Rasa Masakan"],
+        },
+        // Tambahkan produk lain di sini sesuai kebutuhan
+      };
+
+      // Fungsi helper untuk format angka ke Rupiah
+      function formatRupiah(angka) {
+        return new Intl.NumberFormat("id-ID").format(angka);
+      }
+
+      // Fungsi untuk membuat kartu produk
+      function createProductCard(product) {
+        const productCard = document.createElement("div");
+        // Menggunakan col-span-full pada mobile (xs) dan md:w-1/3 xl:w-1/4 untuk desktop
+        productCard.className = "w-full sm:w-1/2 md:w-1/3 xl:w-1/4 p-6 flex flex-col";
+        // Menggunakan data-product-id untuk identifikasi saat diklik
+        productCard.innerHTML = `
+          <a href="#" class="product-link hover:grow hover:shadow-lg" data-product-id="${product.id}">
+            <img class="w-full h-48 object-cover mb-4 rounded-lg" src="${product.image}" alt="${product.name}" />
+            <div class="pt-3 flex items-center justify-between">
+              <p class="font-bold text-gray-800">${product.name}</p>
+              <svg class="h-6 w-6 fill-current text-gray-500 hover:text-red-500 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M12,4.595c-1.104-1.006-2.512-1.558-3.996-1.558c-1.578,0-3.072,0.623-4.213,1.758c-2.353,2.363-2.352,6.059,0.002,8.412 l7.332,7.332c0.17,0.299,0.498,0.492,0.875,0.492c0.322,0,0.609-0.163,0.792-0.409l7.415-7.415 c2.354-2.354,2.354-6.049-0.002-8.416c-1.137-1.131-2.631-1.754-4.209-1.754C14.513,3.037,13.104,3.589,12,4.595z M18.791,6.205 c1.563,1.571,1.564,4.025,0.002,5.588L12,18.586l-6.793-6.793C3.645,10.23,3.646,7.776,5.205,6.209 c0.76-0.756,1.754-1.172,2.799-1.172s2.035,0.416,2.789,1.17l0.5,0.5c0.391,0.391,1.023,0.391,1.414,0l0.5-0.5 C14.719,4.698,17.281,4.702,18.791,6.205z"
+                />
+              </svg>
+            </div>
+            <p class="pt-1 text-gray-900">Rp ${formatRupiah(product.price)} / ${product.unit}</p>
+          </a>
+        `;
+        return productCard;
+      }
+
+      // Render semua produk ke halaman
+      function renderProducts() {
+        const productListContainer = document.getElementById("product-list");
+        productListContainer.innerHTML = ""; // Clear existing products
+        for (const key in products) {
+          if (products.hasOwnProperty(key)) {
+            const product = products[key];
+            const card = createProductCard(product);
+            productListContainer.appendChild(card);
+          }
+        }
+      }
+
+      // Modal Logic
+      const productModal = document.getElementById("productModal");
+      const closeModalBtn = document.getElementById("closeModalBtn");
+      const modalProductImage = document.getElementById("modal-product-image");
+      const modalProductName = document.getElementById("modal-product-name");
+      const modalProductDescription = document.getElementById("modal-product-description");
+      const modalProductPrice = document.getElementById("modal-product-price");
+      const modalProductUnit = document.getElementById("modal-product-unit");
+      const modalProductBenefits = document.getElementById("modal-product-benefits");
+      const modalQuantityInput = document.getElementById("modal-quantity");
+      const modalAddToCartBtn = document.getElementById("modal-addToCartBtn");
+
+      function openModal(productId) {
+        const product = products[productId];
+        if (product) {
+          modalProductImage.src = product.image;
+          modalProductImage.alt = product.name;
+          modalProductName.textContent = product.name;
+          modalProductDescription.textContent = product.description;
+          modalProductPrice.textContent = formatRupiah(product.price);
+          modalProductUnit.textContent = product.unit;
+
+          modalProductBenefits.innerHTML = ""; // Clear previous benefits
+          product.benefits.forEach((benefit) => {
+            const li = document.createElement("li");
+            li.textContent = benefit;
+            modalProductBenefits.appendChild(li);
+          });
+
+          // Set quantity back to 1 and attach product ID to the button for later use
+          modalQuantityInput.value = 1;
+          modalAddToCartBtn.setAttribute("data-product-id", productId);
+
+          productModal.classList.add("active");
+          productModal.classList.remove("hidden");
+          document.body.style.overflow = "hidden"; // Prevent scrolling background
+        }
+      }
+
+      function closeModal() {
+        productModal.classList.remove("active");
+        // Give time for transition before hiding completely
+        setTimeout(() => {
+          productModal.classList.add("hidden");
+          document.body.style.overflow = ""; // Restore scrolling
+        }, 300);
+      }
+
+      // Event Listeners
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProducts(); // Render products on page load
+
+        // Add click event listener to all product links
+        document.querySelectorAll(".product-link").forEach((link) => {
+          link.addEventListener("click", function (event) {
+            event.preventDefault(); // Mencegah default navigasi link
+            const productId = this.getAttribute("data-product-id");
+            openModal(productId);
+          });
+        });
+
+        closeModalBtn.addEventListener("click", closeModal);
+
+        // Close modal when clicking outside of the modal content
+        productModal.addEventListener("click", function (event) {
+          if (event.target === productModal) {
+            closeModal();
+          }
+        });
+
+        // Add to cart button inside modal
+        modalAddToCartBtn.addEventListener("click", function () {
+          const productId = this.getAttribute("data-product-id");
+          const quantity = modalQuantityInput.value;
+          const product = products[productId];
+          if (product) {
+            alert(`Produk ${product.name} sejumlah ${quantity} ${product.unit} ditambahkan ke keranjang`);
+            // Di sini Anda akan menambahkan logika sebenarnya untuk menambahkan ke keranjang belanja.
+            window.location.href = "order.html";
+            closeModal();
+          }
+        });
+      });
+    </script>
   </body>
 </html>
