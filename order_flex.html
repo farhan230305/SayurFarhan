@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Sayur Farhan - Form Pemesanan</title>
+    <meta name="description" content="Isi form pemesanan Anda di Sayur Farhan untuk mendapatkan sayur segar." />
+    <meta name="keywords" content="pemesanan, order, belanja, sayur, pengiriman, Sayur Farhan" />
+
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" />
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^3.0/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet" />
+
+    <style>
+      .work-sans {
+        font-family: "Work Sans", sans-serif;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 text-gray-600 work-sans leading-normal text-base tracking-normal">
+    <nav id="header" class="w-full z-30 top-0 py-1 bg-white shadow-md">
+      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 px-6 py-3">
+        <div class="order-1 md:order-2">
+          <a class="flex items-center tracking-wide no-underline hover:no-underline font-bold text-gray-800 text-xl" href="index.html">
+            <svg class="fill-current text-gray-800 mr-2" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M5,22h14c1.103,0,2-0.897,2-2V9c0-0.553-0.447-1-1-1h-3V7c0-2.757-2.243-5-5-5S7,4.243,7,7v1H4C3.447,8,3,8.447,3,9v11 C3,21.103,3.897,22,5,22z M9,7c0-1.654,1.346-3,3-3s3,1.346,3,3v1H9V7z M5,10h2v2h2v-2h6v2h2v-2h2l0.002,10H5V10z"
+              />
+            </svg>
+            SAYUR FARHAN
+          </a>
+        </div>
+        <div class="order-2 md:order-3 flex items-center" id="nav-content">
+          <a class="pl-3 inline-block no-underline hover:text-black" href="auth.html">
+            <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <circle fill="none" cx="12" cy="7" r="3" />
+              <path
+                d="M12 2C9.243 2 7 4.243 7 7s2.243 5 5 5 5-2.243 5-5S14.757 2 12 2zM12 10c-1.654 0-3-1.346-3-3s1.346-3 3-3 3 1.346 3 3S13.654 10 12 10zM21 21v-1c0-3.859-3.141-7-7-7h-4c-3.86 0-7 3.141-7 7v1h2v-1c0-2.757 2.243 5 5-5h4c2.757 0 5 2.243 5 5v1H21z"
+              />
+            </svg>
+          </a>
+          <a class="pl-3 inline-block no-underline hover:text-black" href="order.html">
+            <svg class="fill-current hover:text-black" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path
+                d="M21,7H7.462L5.91,3.586C5.748,3.229,5.392,3,5,3H2v2h2.356L9.09,15.414C9.252,15.771,9.608,16,10,16h8 c0.4,0,0.762-0.238,0.919-0.606l3-7c0.133-0.309,0.101-0.663-0.084-0.944C21.649,7.169,21.336,7,21,7z M17.341,14h-6.697L8.371,9 h11.112L17.341,14z"
+              />
+              <circle cx="10.5" cy="18.5" r="1.5" />
+              <circle cx="17.5" cy="18.5" r="1.5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container mx-auto px-6 py-12">
+      <h1 class="text-4xl font-bold text-gray-800 text-center mb-10">Form Pemesanan Anda</h1>
+
+      <div class="bg-white p-8 rounded-lg shadow-xl grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Detail Pengiriman</h2>
+          <form id="orderForm" action="#" method="POST">
+            <div class="mb-4">
+              <label for="fullName" class="block text-gray-700 text-sm font-bold mb-2">Nama Lengkap:</label>
+              <input
+                type="text"
+                id="fullName"
+                name="fullName"
+                class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Nama Lengkap Anda"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">Nomor Telepon:</label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Contoh: 081234567890"
+                required
+              />
+            </div>
+            <div class="mb-4">
+              <label for="address" class="block text-gray-700 text-sm font-bold mb-2">Alamat Lengkap:</label>
+              <textarea
+                id="address"
+                name="address"
+                rows="4"
+                class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Jalan, Nomor Rumah, RT/RW, Kelurahan, Kecamatan, Kota"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-4">
+              <label for="notes" class="block text-gray-700 text-sm font-bold mb-2">Catatan (Opsional):</label>
+              <textarea
+                id="notes"
+                name="notes"
+                rows="2"
+                class="shadow appearance-none border rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500"
+                placeholder="Contoh: Titip ke tetangga jika tidak ada di rumah"
+              ></textarea>
+            </div>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Pilih Produk</h3>
+            <div id="product-selection-container" class="space-y-4 mb-6">
+              <div class="flex items-center space-x-4 product-row">
+                <select name="product[]" class="flex-grow shadow border rounded py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 product-select" required>
+                  <option value="">Pilih Produk</option>
+                </select>
+                <input type="number" name="quantity[]" min="1" value="1" class="w-24 shadow border rounded py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 product-quantity" required />
+                <span class="text-gray-700 text-sm product-unit"></span>
+                <button type="button" class="text-red-500 hover:text-red-700 remove-product-btn">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <button type="button" id="addProductBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">+ Tambah Produk Lain</button>
+
+            <h3 class="text-xl font-bold text-gray-800 mt-8 mb-4">Metode Pembayaran</h3>
+            <div class="mb-4">
+              <div class="flex items-center mb-2">
+                <input type="radio" id="bcaTransfer" name="paymentMethod" value="BCA Transfer" class="mr-2" required />
+                <label for="bcaTransfer" class="text-gray-700">Transfer Bank (BCA)</label>
+              </div>
+              <div class="flex items-center mb-2">
+                <input type="radio" id="ovo" name="paymentMethod" value="OVO" class="mr-2" />
+                <label for="ovo" class="text-gray-700">OVO</label>
+              </div>
+              <div class="flex items-center">
+                <input type="radio" id="gopay" name="paymentMethod" value="GoPay" class="mr-2" />
+                <label for="gopay" class="text-gray-700">GoPay</label>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Ringkasan Pesanan</h2>
+
+          <div id="order-summary-items" class="border border-gray-200 rounded-lg p-4 mb-6 space-y-4">
+            <p class="text-gray-500 text-center" id="empty-cart-message">Belum ada produk yang dipilih.</p>
+          </div>
+
+          <div class="border-t border-gray-300 pt-4 mt-4">
+            <div class="flex justify-between items-center mb-2">
+              <p class="text-gray-700">Subtotal:</p>
+              <p class="font-bold text-gray-800">Rp <span id="subtotal">0</span></p>
+            </div>
+            <div class="flex justify-between items-center mb-2">
+              <p class="text-gray-700">Biaya Pengiriman:</p>
+              <p class="font-bold text-gray-800">Rp <span id="shippingCost">10.000</span></p>
+            </div>
+            <div class="flex justify-between items-center text-xl font-bold text-green-700 pt-2 border-t border-gray-300">
+              <p>Total Pembayaran:</p>
+              <p>Rp <span id="grandTotal">10.000</span></p>
+            </div>
+          </div>
+
+          <div class="mt-8">
+            <button type="submit" form="orderForm" class="bg-green-600 hover:bg-green-700 text-white font-bold py-4 px-8 rounded-full focus:outline-none focus:shadow-outline w-full text-xl">Konfirmasi Pemesanan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-gray-800 text-gray-200 py-10 mt-12">
+      <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="mb-6 md:mb-0">
+          <h3 class="font-bold text-white text-lg mb-4">SAYUR FARHAN</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">Menyediakan sayur mayur segar langsung dari petani lokal. Kualitas terjamin, harga terjangkau, dan pengiriman cepat untuk kebutuhan dapur sehat Anda.</p>
+        </div>
+
+        <div class="mb-6 md:mb-0">
+          <h3 class="font-bold text-white text-lg mb-4">Navigasi</h3>
+          <ul class="space-y-2">
+            <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors duration-300">Beranda</a></li>
+            <li><a href="index.html#store" class="text-gray-400 hover:text-white transition-colors duration-300">Produk</a></li>
+            <li><a href="index.html#about" class="text-gray-400 hover:text-white transition-colors duration-300">Tentang Kami</a></li>
+            <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Hubungi Kami</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="font-bold text-white text-lg mb-4">Ikuti Kami</h3>
+          <div class="flex space-x-4 mb-6">
+            <a href="https://facebook.com/sayurfarhan" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.776-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C18.343 21.128 22 16.991 22 12z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a href="https://instagram.com/sayurfarhan" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  fill-rule="evenodd"
+                  d="M12 4c-2.48 0-4.5 2.02-4.5 4.5s2.02 4.5 4.5 4.5 4.5-2.02 4.5-4.5S14.48 4 12 4zm0 2.25c1.24 0 2.25 1.01 2.25 2.25S13.24 10.75 12 10.75 9.75 9.74 9.75 8.5 10.76 6.25 12 6.25zM12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm6.657 3.343a.75.75 0 11-1.06 1.06.75.75 0 011.06-1.06zm-1.06 1.06a.75.75 0 000 1.06.75.75 0 001.06 0 .75.75 0 000-1.06zM4.5 12c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </a>
+            <a href="https://wa.me/6281234567890" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition-colors duration-300">
+              <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M.057 24l1.687-6.163c-1.041-1.804-1.6-3.807-1.6-5.892C.144 6.902 6.059 1 13.5 1c3.2 0 6.22 1.24 8.441 3.461 2.221 2.22 3.46 5.24 3.46 8.44C25.4 19.062 19.485 25 12 25c-2.985 0-5.836-.889-8.318-2.435L.057 24zm6.897-3.284l.288.163c2.188 1.266 4.77 1.942 7.358 1.942 5.626 0 10.22-4.594 10.22-10.22 0-5.626-4.594-10.22-10.22-10.22S3.28 6.374 3.28 12c0 2.203.702 4.318 2.062 6.096l.128.188-.496 1.815 1.86-1.78zm5.549-5.184c-.214-.108-.501-.214-.796-.107-.295.107-.638.535-.78.638-.14.107-.282.107-.525-.098-.242-.214-.805-.733-.976-.948-.17-.214-.022-.295.192-.501.192-.178.214-.295.32-.47l.428-.696c.107-.178.053-.295-.022-.445-.07-.14-.707-1.737-.96-2.368-.254-.63-.509-.535-.715-.535-.205 0-.447-.022-.68-.022-.232 0-.61.107-.92.375-.309.268-1.176 1.16-1.176 2.825 0 1.666 1.206 3.327 1.73 4.023.524.696 2.502 4.004 5.928 5.306 3.425 1.299 3.425.891 4.053.891.627 0 1.96-.814 2.204-1.619.243-.805.243-1.493.17-1.619-.07-.107-.268-.163-.553-.321z"
+                />
+              </svg>
+            </a>
+          </div>
+          <p class="text-gray-400 text-sm">Email: <a href="mailto:info@sayurfarhan.com" class="hover:text-white transition-colors duration-300">info@sayurfarhan.com</a></p>
+          <p class="text-gray-400 text-sm">Telepon: <a href="tel:+6281234567890" class="hover:text-white transition-colors duration-300">+62 812-3456-7890</a></p>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 mt-10 pt-6 text-center text-gray-500 text-sm">&copy; 2025 Sayur Farhan. Hak Cipta Dilindungi Undang-Undang.</div>
+    </footer>
+
+    <script>
+      // Data produk yang tersedia (contoh)
+      const products = [
+        { id: "brokoli", name: "Brokoli Segar", price: 25000, unit: "kg", image: "images/brokoli.jpeg" },
+        { id: "bayam", name: "Bayam Segar", price: 5000, unit: "ikat", image: "images/bayam.jpeg" },
+        { id: "wortel", name: "Wortel Organik", price: 12000, unit: "kg", image: "images/wortel.jpeg" },
+        { id: "tomat", name: "Tomat Merah", price: 8000, unit: "kg", image: "images/tomat.jpeg" },
+        { id: "cabai", name: "Cabai Rawit", price: 18000, unit: "ons", image: "images/cabai.jpeg" },
+        // Tambahkan produk lain di sini
+      ];
+
+      const productContainer = document.getElementById("product-selection-container");
+      const addProductBtn = document.getElementById("addProductBtn");
+      const orderSummaryItems = document.getElementById("order-summary-items");
+      const subtotalElement = document.getElementById("subtotal");
+      const shippingCostElement = document.getElementById("shippingCost");
+      const grandTotalElement = document.getElementById("grandTotal");
+      const emptyCartMessage = document.getElementById("empty-cart-message");
+
+      const SHIPPING_COST = 10000; // Biaya pengiriman tetap
+      shippingCostElement.textContent = formatRupiah(SHIPPING_COST);
+
+      // Fungsi untuk membuat baris produk baru
+      function createProductRow() {
+        const productRow = document.createElement("div");
+        productRow.classList.add("flex", "items-center", "space-x-4", "product-row");
+
+        productRow.innerHTML = `
+          <select
+            name="product[]"
+            class="flex-grow shadow border rounded py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 product-select"
+            required
+          >
+            <option value="">Pilih Produk</option>
+            ${products.map((p) => `<option value="${p.id}">${p.name} (Rp ${formatRupiah(p.price)}/${p.unit})</option>`).join("")}
+          </select>
+          <input
+            type="number"
+            name="quantity[]"
+            min="1"
+            value="1"
+            class="w-24 shadow border rounded py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-green-500 product-quantity"
+            required
+          />
+          <span class="text-gray-700 text-sm product-unit"></span>
+          <button type="button" class="text-red-500 hover:text-red-700 remove-product-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+            </svg>
+          </button>
+        `;
+
+        productContainer.appendChild(productRow);
+        attachProductRowListeners(productRow); // Pasang listener untuk baris baru
+        updateOrderSummary(); // Perbarui ringkasan setelah menambah baris
+      }
+
+      // Fungsi untuk memasang event listener ke baris produk
+      function attachProductRowListeners(row) {
+        const select = row.querySelector(".product-select");
+        const quantityInput = row.querySelector(".product-quantity");
+        const unitSpan = row.querySelector(".product-unit");
+        const removeBtn = row.querySelector(".remove-product-btn");
+
+        // Update unit saat produk dipilih
+        select.addEventListener("change", () => {
+          const selectedProduct = products.find((p) => p.id === select.value);
+          unitSpan.textContent = selectedProduct ? selectedProduct.unit : "";
+          updateOrderSummary();
+        });
+
+        // Update ringkasan saat kuantitas berubah
+        quantityInput.addEventListener("input", updateOrderSummary);
+
+        // Hapus baris produk
+        removeBtn.addEventListener("click", () => {
+          row.remove();
+          updateOrderSummary(); // Perbarui ringkasan setelah menghapus baris
+        });
+
+        // Inisialisasi unit jika ada produk yang dipilih secara default (tidak dalam kasus ini, tapi baik untuk dimiliki)
+        const initialSelectedProduct = products.find((p) => p.id === select.value);
+        unitSpan.textContent = initialSelectedProduct ? initialSelectedProduct.unit : "";
+      }
+
+      // Fungsi untuk mengupdate ringkasan pesanan
+      function updateOrderSummary() {
+        let currentSubtotal = 0;
+        const itemsInCart = [];
+
+        // Hapus semua item yang ada di ringkasan sebelumnya
+        orderSummaryItems.innerHTML = "";
+
+        // Dapatkan semua baris produk yang dipilih
+        document.querySelectorAll(".product-row").forEach((row) => {
+          const productId = row.querySelector(".product-select").value;
+          const quantity = parseInt(row.querySelector(".product-quantity").value);
+
+          if (productId && quantity > 0) {
+            const product = products.find((p) => p.id === productId);
+            if (product) {
+              const itemTotal = product.price * quantity;
+              currentSubtotal += itemTotal;
+              itemsInCart.push({
+                product: product,
+                quantity: quantity,
+                total: itemTotal,
+              });
+
+              // Tambahkan item ke ringkasan pesanan
+              const itemDiv = document.createElement("div");
+              itemDiv.classList.add("flex", "items-center", "mb-4");
+              itemDiv.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="w-16 h-16 object-cover rounded-md mr-4" onerror="this.onerror=null;this.src='https://via.placeholder.com/64x64?text=No+Image';" />
+                <div>
+                  <p class="font-bold text-gray-800">${product.name}</p>
+                  <p class="text-gray-600 text-sm">Jumlah: ${quantity} ${product.unit}</p>
+                  <p class="text-gray-600 text-sm">Harga per ${product.unit}: Rp ${formatRupiah(product.price)}</p>
+                  <p class="font-bold text-gray-800">Total: Rp ${formatRupiah(itemTotal)}</p>
+                </div>
+              `;
+              orderSummaryItems.appendChild(itemDiv);
+            }
+          }
+        });
+
+        // Tampilkan pesan keranjang kosong jika tidak ada item
+        if (itemsInCart.length === 0) {
+          emptyCartMessage.classList.remove("hidden");
+        } else {
+          emptyCartMessage.classList.add("hidden");
+        }
+
+        const grandTotal = currentSubtotal + SHIPPING_COST;
+
+        subtotalElement.textContent = formatRupiah(currentSubtotal);
+        grandTotalElement.textContent = formatRupiah(grandTotal);
+      }
+
+      // Fungsi helper untuk format angka ke Rupiah
+      function formatRupiah(angka) {
+        return new Intl.NumberFormat("id-ID").format(angka);
+      }
+
+      // Event Listener untuk tombol "Tambah Produk Lain"
+      addProductBtn.addEventListener("click", createProductRow);
+
+      // Inisialisasi: Tambahkan satu baris produk saat halaman dimuat
+      window.addEventListener("DOMContentLoaded", () => {
+        createProductRow(); // Tambahkan baris pertama secara otomatis
+        updateOrderSummary(); // Hitung total awal (harusnya 0 + biaya kirim)
+      });
+    </script>
+  </body>
+</html>
